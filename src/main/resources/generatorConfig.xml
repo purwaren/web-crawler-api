@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="/Users/purwaren/.m2/repository/org/postgresql/postgresql/9.4.1212.jre7/postgresql-9.4.1212.jre7.jar"/>
+
+    <context id="TheContext" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://192.168.33.10:5432/crawler"
+                        userId="crawler"
+                        password="crawler123!">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="id.corei.crawler.model" targetProject="src/main/java">
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="id.corei.crawler.model.mapper"  targetProject="src/main/resources">
+        </sqlMapGenerator>
+
+        <table schema="public" tableName="%">
+            <property name="ignoreQualifiersAtRuntime" value="true" />
+            <generatedKey column="id" sqlStatement="JDBC" identity="true" />
+        </table>
+
+
+        <!--Running Command-->
+        <!--mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate-->
+    
+    </context>
+</generatorConfiguration>
