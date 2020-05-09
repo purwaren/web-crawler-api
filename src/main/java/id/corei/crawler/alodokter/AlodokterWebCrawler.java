@@ -130,6 +130,7 @@ public class AlodokterWebCrawler {
      * @param item
      */
     private void insertDb(DrugItem item) {
+        logger.info("drug == {}", new Gson().toJson(item));
         try {
             String desc = new String(Files.readAllBytes(Paths.get("data/"+item.getPermalink()+".html")));
             Date now = new Date();
@@ -139,7 +140,7 @@ public class AlodokterWebCrawler {
             drug.setLastRetrieved(now);
             drug.setCreatedAt(now);
             drug.setCreatedBy("init_process");
-            drug.setPermalink(this.config.getBaseUrl()+"/"+item.getPermalink());
+            drug.setPermalink(this.config.getBaseUrl()+item.getPermalink());
             drug.setSource("Alodokter");
             //check if the data already saved before
             if (drugService.getByPermalink(drug.getPermalink()) == null) {
